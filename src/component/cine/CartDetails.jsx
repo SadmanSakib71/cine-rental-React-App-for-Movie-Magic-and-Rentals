@@ -1,7 +1,18 @@
+import { useContext } from "react";
+import { toast } from "react-toastify";
 import checkout from "../../assets/icons/checkout.svg";
+import { MovieContext } from "../../context/AllContext";
 import CartItems from "./CartItems";
 
-const CartDetails = ({ cartData, onClose }) => {
+const CartDetails = ({ onClose }) => {
+  const { cartData, setCartData } = useContext(MovieContext);
+
+  const handleRemoveCart = (cartItemId) => {
+    const filteredItem = cartData.filter((item) => item.id !== cartItemId);
+    setCartData([...filteredItem]);
+    toast.error("Removed an item successfully");
+  };
+
   return (
     <div>
       <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
@@ -10,9 +21,21 @@ const CartDetails = ({ cartData, onClose }) => {
             <h2 className="text-2xl lg:text-[30px] mb-10 font-bold">
               Your Carts
             </h2>
-            {cartData.map((cartItem) => (
-              <CartItems key={cartItem.id} cartItem={cartItem} />
-            ))}
+            {cartData.length === 0 ? (
+              "No Data Added"
+            ) : (
+              <>
+                {" "}
+                {cartData.map((cartItem) => (
+                  <CartItems
+                    key={cartItem.id}
+                    cartItem={cartItem}
+                    onDelete={handleRemoveCart}
+                  />
+                ))}
+              </>
+            )}
+
             <div className="flex items-center justify-end gap-2">
               <a
                 className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-primary text-[#171923] text-sm"

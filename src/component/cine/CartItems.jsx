@@ -1,7 +1,7 @@
 import deleteIcon from "../../assets//delete.svg";
 import { getImageUrl } from "../../utills/cine-util";
 
-const CartItems = ({ cartItem }) => {
+const CartItems = ({ cartItem, onDelete }) => {
   return (
     <div>
       <div className="space-y-8 lg:space-y-12 max-h-112.5 overflow-auto mb-10 lg:mb-14">
@@ -10,7 +10,9 @@ const CartItems = ({ cartItem }) => {
             <img
               className="rounded overflow-hidden"
               src={getImageUrl(cartItem.cover)}
-              alt=""
+              width={50}
+              height={50}
+              alt={cartItem.title}
             />
             <div>
               <h3 className="text-base md:text-xl font-bold">
@@ -21,7 +23,10 @@ const CartItems = ({ cartItem }) => {
             </div>
           </div>
           <div className="flex justify-between gap-4 items-center">
-            <button className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white">
+            <button
+              className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white cursor-pointer"
+              onClick={() => onDelete(cartItem.id)}
+            >
               <img className="w-5 h-5" src={deleteIcon} alt="" />
               <span className="max-md:hidden">Remove</span>
             </button>

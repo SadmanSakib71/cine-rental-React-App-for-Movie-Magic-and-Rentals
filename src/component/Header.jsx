@@ -19,10 +19,7 @@ const Header = () => {
     <div>
       <header>
         {showCartDetails && (
-          <CartDetails
-            cartData={cartData}
-            onClose={() => setShowCartDetails(false)}
-          />
+          <CartDetails onClose={() => setShowCartDetails(false)} />
         )}
         <nav className="container flex items-center justify-between space-x-10 py-6">
           <a href="index.html">
