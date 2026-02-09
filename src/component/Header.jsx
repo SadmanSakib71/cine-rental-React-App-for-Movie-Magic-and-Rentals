@@ -28,12 +28,10 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = localStorage.getItem("theme") || "light";
 
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      setTheme(true);
-    }
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    setTheme(savedTheme);
   }, [setTheme]);
 
   return (
