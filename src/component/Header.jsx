@@ -10,7 +10,6 @@ const Header = () => {
   const [showCartDetails, setShowCartDetails] = useState(false);
 
   const { cartData } = useContext(MovieContext);
-  console.log(cartData, "header cartdata");
 
   const handleCartDetailShow = () => {
     setShowCartDetails(true);
@@ -20,7 +19,10 @@ const Header = () => {
     <div>
       <header>
         {showCartDetails && (
-          <CartDetails onClose={() => setShowCartDetails(false)} />
+          <CartDetails
+            cartData={cartData}
+            onClose={() => setShowCartDetails(false)}
+          />
         )}
         <nav className="container flex items-center justify-between space-x-10 py-6">
           <a href="index.html">
@@ -51,6 +53,11 @@ const Header = () => {
                 onClick={handleCartDetailShow}
               >
                 <img src={shoppingCart} width="24" height="24" alt="" />
+                {cartData.length > 0 && (
+                  <span className="rounded-full absolute -top-3 left-7 bg-[#12CF6F] text-white w-7.5 h-7.5 flex items-center justify-center">
+                    {cartData.length}
+                  </span>
+                )}
               </a>
             </li>
           </ul>
