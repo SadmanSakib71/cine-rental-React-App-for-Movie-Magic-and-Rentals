@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import moon from "../assets/icons/moon.svg";
 import logo from "../assets/logo.svg";
 import ring from "../assets/ring.svg";
 import shoppingCart from "../assets/shopping-cart.svg";
+import { MovieContext } from "../context/AllContext";
 import CartDetails from "./cine/CartDetails";
 
 const Header = () => {
   const [showCartDetails, setShowCartDetails] = useState(false);
+
+  const { cartData } = useContext(MovieContext);
+  console.log(cartData, "header cartdata");
 
   const handleCartDetailShow = () => {
     setShowCartDetails(true);
