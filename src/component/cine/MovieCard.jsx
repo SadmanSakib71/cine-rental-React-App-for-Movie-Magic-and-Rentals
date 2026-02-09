@@ -28,7 +28,7 @@ const MovieCard = ({ movie }) => {
           onClick={() => handleMovieSelection(movie)}
           className="w-full object-cover cursor-pointer"
           src={getImageUrl(movie.cover)}
-          alt=""
+          alt={movie.title}
         />
         <figcaption className="pt-4">
           <h3 className="text-xl mb-1">{movie.title}</h3>
