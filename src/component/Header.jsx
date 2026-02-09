@@ -10,7 +10,7 @@ import CartDetails from "./cine/CartDetails";
 const Header = () => {
   const [showCartDetails, setShowCartDetails] = useState(false);
 
-  const { cartData } = useContext(MovieContext);
+  const { state } = useContext(MovieContext);
   const { theme, setTheme } = useContext(ThemeContext);
 
   const handleCartDetailShow = () => {
@@ -76,9 +76,9 @@ const Header = () => {
                 onClick={handleCartDetailShow}
               >
                 <img src={shoppingCart} width="24" height="24" alt="" />
-                {cartData.length > 0 && (
+                {state.cartData.length > 0 && (
                   <span className="rounded-full absolute -top-3 left-7 bg-[#12CF6F] text-white w-7.5 h-7.5 flex items-center justify-center">
-                    {cartData.length}
+                    {state.cartData.length}
                   </span>
                 )}
               </a>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import MovieList from "./component/cine/MovieList";
@@ -6,14 +6,15 @@ import Footer from "./component/Footer";
 import Header from "./component/Header";
 import Sidebar from "./component/Sidebar";
 import { MovieContext, ThemeContext } from "./context/AllContext";
+import { CartReducer, initialState } from "./reducers/CartReducer";
 
 function App() {
-  const [cartData, setCartData] = useState([]);
+  const [state, dispatch] = useReducer(CartReducer, initialState);
   const [theme, setTheme] = useState("light");
   return (
     <>
       <ThemeContext.Provider value={{ theme, setTheme }}>
-        <MovieContext.Provider value={{ cartData, setCartData }}>
+        <MovieContext.Provider value={{ state, dispatch }}>
           <div className="bg-white text-black dark:bg-gray-900 dark:text-white">
             <Header />
             <main>

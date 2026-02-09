@@ -5,11 +5,13 @@ import { MovieContext } from "../../context/AllContext";
 import CartItems from "./CartItems";
 
 const CartDetails = ({ onClose }) => {
-  const { cartData, setCartData } = useContext(MovieContext);
+  const { state, dispatch } = useContext(MovieContext);
 
   const handleRemoveCart = (cartItemId) => {
-    const filteredItem = cartData.filter((item) => item.id !== cartItemId);
-    setCartData([...filteredItem]);
+    dispatch({
+      type: "RemoveCart",
+      payload: cartItemId,
+    });
     toast.error("Removed an item successfully");
   };
 
@@ -21,16 +23,16 @@ const CartDetails = ({ onClose }) => {
             <h2 className="text-2xl lg:text-[30px] mb-10 font-bold">
               Your Carts
             </h2>
-            {cartData.length === 0 ? (
+            {state.cartData.length === 0 ? (
               <p className="text-3xl">No Data Added</p>
             ) : (
               <>
                 {" "}
-                {cartData.map((cartItem) => (
+                {state.cartData.map((cartItem) => (
                   <CartItems
                     key={cartItem.id}
                     cartItem={cartItem}
-                    onDelete={handleRemoveCart}
+                    onDelete={() => handleRemoveCart(cartItem.id)}
                   />
                 ))}
               </>

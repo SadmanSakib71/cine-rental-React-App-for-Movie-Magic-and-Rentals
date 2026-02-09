@@ -8,13 +8,18 @@ import Ratting from "./Ratting";
 const MovieCard = ({ movie }) => {
   const [showMovieModal, setShowMovieModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const { cartData, setCartData } = useContext(MovieContext);
+  const { state, dispatch } = useContext(MovieContext);
 
   const handleAddToCart = (movie) => {
-    const found = cartData.find((item) => item.id === movie.id);
+    const found = state.cartData.find((item) => item.id === movie.id);
 
     if (!found) {
-      setCartData([...cartData, movie]);
+      dispatch({
+        type: "AddToCart",
+        payload: {
+          ...movie,
+        },
+      });
       toast.success("Successfully Added");
     } else {
       toast.error(
