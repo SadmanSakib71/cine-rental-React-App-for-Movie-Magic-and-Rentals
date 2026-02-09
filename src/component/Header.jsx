@@ -1,19 +1,40 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moon from "../assets/icons/moon.svg";
+import sun from "../assets/icons/sun.svg";
 import logo from "../assets/logo.svg";
 import ring from "../assets/ring.svg";
 import shoppingCart from "../assets/shopping-cart.svg";
-import { MovieContext } from "../context/AllContext";
+import { MovieContext, ThemeContext } from "../context/AllContext";
 import CartDetails from "./cine/CartDetails";
 
 const Header = () => {
   const [showCartDetails, setShowCartDetails] = useState(false);
 
   const { cartData } = useContext(MovieContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const handleCartDetailShow = () => {
     setShowCartDetails(true);
   };
+
+  const toggleTheme = () => {
+    const html = document.documentElement;
+
+    const isDark = html.classList.toggle("dark");
+
+    const newTheme = isDark ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      setTheme(true);
+    }
+  }, [setTheme]);
 
   return (
     <div>
@@ -40,7 +61,14 @@ const Header = () => {
                 className="bg-primary/20 dark:bg-primary/7 rounded-lg backdrop-blur-[2px] p-1 inline-block"
                 href="#"
               >
-                <img src={moon} width="24" height="24" alt="" />
+                <img
+                  src={theme === "light" ? moon : sun}
+                  width="24"
+                  height="24"
+                  alt=""
+                  onClick={toggleTheme}
+                  className="cursor-pointer"
+                />
               </a>
             </li>
             <li>

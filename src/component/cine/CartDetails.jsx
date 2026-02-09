@@ -22,7 +22,7 @@ const CartDetails = ({ onClose }) => {
               Your Carts
             </h2>
             {cartData.length === 0 ? (
-              "No Data Added"
+              <p className="text-3xl">No Data Added</p>
             ) : (
               <>
                 {" "}
