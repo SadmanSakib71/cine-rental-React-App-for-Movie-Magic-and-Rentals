@@ -1,12 +1,32 @@
+import { useState } from "react";
 import { getImageUrl } from "../../utills/cine-util";
+import MovieModal from "./MovieModal";
 import Ratting from "./Ratting";
 
 const MovieCard = ({ movie }) => {
+  const [showMovieModal, setShowMovieModal] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const handleModalClose = () => {
+    setSelectedMovie(null);
+    setShowMovieModal(false);
+  };
+
+  const handleMovieSelection = (movie) => {
+    setSelectedMovie(movie);
+    setShowMovieModal(true);
+  };
+
   return (
     <div>
+      {showMovieModal && (
+        <MovieModal movie={selectedMovie} onClose={handleModalClose} />
+      )}
+
       <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
         <img
-          className="w-full object-cover"
+          onClick={() => handleMovieSelection(movie)}
+          className="w-full object-cover cursor-pointer"
           src={getImageUrl(movie.cover)}
           alt=""
         />
