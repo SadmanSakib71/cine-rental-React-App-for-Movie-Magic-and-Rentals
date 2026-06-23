@@ -42,7 +42,7 @@ const Sidebar = () => {
               href="#"
             >
               <img src={favourite} width="24" height="24" alt="" />
-              <span>Favourites</span>
+              <span>Favourite</span>
             </a>
           </li>
           <li>
