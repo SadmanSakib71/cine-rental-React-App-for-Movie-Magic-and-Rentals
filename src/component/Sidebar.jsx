@@ -33,7 +33,7 @@ const Sidebar = () => {
               href="#"
             >
               <img src={comingSoon} width="24" height="24" alt="" />
-              <span>Coming Soon...</span>
+              <span>Coming Soon</span>
             </a>
           </li>
           <li>
