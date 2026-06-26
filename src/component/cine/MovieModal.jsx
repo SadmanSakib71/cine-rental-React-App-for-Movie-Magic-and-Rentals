@@ -9,7 +9,7 @@ const MovieModal = ({ onCartAdd, movie, onClose }) => {
             <img
               className="sm:order-2 w-full object-cover h-full max-sm:max-h-75"
               src={getImageUrl(movie.cover)}
-              alt=""
+              alt="movieCover"
             />
             <div className="p-5 lg:p-11">
               <div className="">
