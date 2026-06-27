@@ -21,7 +21,7 @@ const CartDetails = ({ onClose }) => {
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-105 sm:max-w-150 lg:max-w-197.5 p-4 max-h-[90vh] overflow-auto">
           <div className="bg-white shadow-md dark:bg-[#12141D] rounded-2xl overflow-hidden p-5 md:p-9">
             <h2 className="text-2xl lg:text-[30px] mb-10 font-bold">
-              Your Cart
+              Your Carts
             </h2>
             {state.cartData.length === 0 ? (
               <p className="text-3xl">No Data Added</p>
