@@ -30,7 +30,7 @@ const MovieModal = ({ onCartAdd, movie, onClose }) => {
                   href="#"
                   onClick={() => onCartAdd(movie)}
                 >
-                  <img src="./assets/tag.svg" alt="" />
+                  <img src="./assets/tag.svg" alt="tag" />
                   <span>${movie.price}| Add to Cart</span>
                 </a>
                 <a
