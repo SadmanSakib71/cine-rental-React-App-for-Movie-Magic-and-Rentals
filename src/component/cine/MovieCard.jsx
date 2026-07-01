@@ -23,7 +23,7 @@ const MovieCard = ({ movie }) => {
       toast.success("Successfully Added");
     } else {
       toast.error(
-        `The movie ${movie.title} has been added to the cart already`,
+        `The movie ${movie.title} has been added to the carts already`,
       );
     }
   };
